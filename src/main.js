@@ -131,7 +131,7 @@ const sketch = (p) => {
     p.fill(0);
     p.textSize(24);
     p.textAlign(p.LEFT, p.TOP);
-    p.text("Score: " + score, 10, 10);
+    p.text("Score: " + score, 25, 25);
   };
 
   // Attach keyPressed handler to the p5 instance
