@@ -90,7 +90,7 @@ class Snake {
 
 let snake;
 let food;
-let foodFadeSpeed = 3;
+let foodFadeSpeed = 5;
 let score = 0;
 let enemySnake;
 
