@@ -87,7 +87,7 @@ function randomFood() {
 const sketch = (p) => {
   p.setup = () => {
     p.createCanvas(WIDTH, HEIGHT);
-    p.frameRate(5); // Lower speed
+    p.frameRate(10);
     food = randomFood();
     score = 0;
   };
