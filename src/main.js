@@ -64,9 +64,13 @@ class Snake {
   }
 
   draw(p) {
-    p.fill(0, 200, 0);
-    for (const part of this.body) {
-      p.rect(part.x * SCALE, part.y * SCALE, SCALE, SCALE);
+    const startColor = p.color(0, 200, 0);
+    const endColor = p.color(0, 100, 0);
+    for (let i = 0; i < this.body.length; i++) {
+      const t = i / Math.max(1, this.body.length - 1);
+      const segmentColor = p.lerpColor(startColor, endColor, t);
+      p.fill(segmentColor);
+      p.rect(this.body[i].x * SCALE, this.body[i].y * SCALE, SCALE, SCALE);
     }
   }
 }
