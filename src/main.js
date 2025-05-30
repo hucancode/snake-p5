@@ -73,7 +73,6 @@ class Snake {
 
 let snake = new Snake();
 let food;
-let score = 0;
 
 
 function randomFood() {
@@ -89,7 +88,6 @@ const sketch = (p) => {
     p.createCanvas(WIDTH, HEIGHT);
     p.frameRate(10);
     food = randomFood();
-    score = 0;
   };
 
   p.draw = () => {
@@ -108,7 +106,6 @@ const sketch = (p) => {
 
     snake.update();
     if (snake.eat(food)) {
-      score++;
       food = randomFood();
     }
     if (snake.checkCollision()) {
@@ -126,12 +123,6 @@ const sketch = (p) => {
 
     // Draw snake
     snake.draw(p);
-
-    // Draw score
-    p.fill(0);
-    p.textSize(24);
-    p.textAlign(p.LEFT, p.TOP);
-    p.text("Score: " + score, 25, 25);
   };
 
   // Attach keyPressed handler to the p5 instance
