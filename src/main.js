@@ -77,15 +77,19 @@ class Snake {
 
 let snake = new Snake();
 let food;
+let foodFade = 255; // Initial opacity (fully visible)
+let foodFadeSpeed = 5; // How fast the food fades
+let foodTimer = 0; // Timer to track how long the food has been on screen
 let score = 0;
 
 
 function randomFood() {
-  // Food should not spawn on the wall
   return {
-    x: Math.floor(Math.random() * ((WIDTH / SCALE) - 2)) + 1,
-    y: Math.floor(Math.random() * ((HEIGHT / SCALE) - 2)) + 1,
-  };
+      x: Math.floor(Math.random() * ((WIDTH / SCALE) - 2)) + 1,
+      y: Math.floor(Math.random() * ((HEIGHT / SCALE) - 2)) + 1,
+      fade: 255, // Initial opacity
+      timer: 0,  // Initial timer
+    };
 }
 
 const sketch = (p) => {
@@ -101,13 +105,9 @@ const sketch = (p) => {
 
     // Draw walls
     p.fill(100);
-    // Top wall
     p.rect(0, 0, WIDTH, SCALE);
-    // Bottom wall
     p.rect(0, HEIGHT - SCALE, WIDTH, SCALE);
-    // Left wall
     p.rect(0, 0, SCALE, HEIGHT);
-    // Right wall
     p.rect(WIDTH - SCALE, 0, SCALE, HEIGHT);
 
     snake.update();
@@ -124,8 +124,15 @@ const sketch = (p) => {
       return;
     }
 
-    // Draw food
-    p.fill(255, 0, 0);
+    // Update food fade
+    food.timer++;
+    food.fade = 255 - (food.timer * foodFadeSpeed);
+    if (food.fade <= 0) {
+      food = randomFood(); // Reset food if it's fully faded
+    }
+
+    // Draw food with fade
+    p.fill(255, 0, 0, food.fade);
     p.rect(food.x * SCALE, food.y * SCALE, SCALE, SCALE);
 
     // Draw snake
@@ -137,7 +144,6 @@ const sketch = (p) => {
     p.textAlign(p.LEFT, p.TOP);
     p.text("Score: " + score, 25, 25);
   };
-
   // Attach keyPressed handler to the p5 instance
   p.keyPressed = function() {
     if (p.key === p.LEFT_ARROW) snake.setDir(-1, 0);
