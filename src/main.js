@@ -6,7 +6,7 @@ const SCALE = 20;
 
 class Snake {
   constructor() {
-    this.body = [{ x: 10, y: 10 }];
+    this.body = [{ x: 10, y: 10 }, {x: 10, y: 9}, {x: 10, y: 8},{x: 10, y: 7}];
     this.xdir = 1;
     this.ydir = 0;
     this.grow = false;
@@ -106,7 +106,7 @@ function randomFood() {
 const sketch = (p) => {
   p.setup = () => {
     p.createCanvas(WIDTH, HEIGHT);
-    p.frameRate(5); // Lower speed
+    p.frameRate(10);
     food = randomFood();
     score = 0;
     snake = new Snake();
