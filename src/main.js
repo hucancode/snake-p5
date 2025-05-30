@@ -22,6 +22,9 @@ class Snake {
   }
 
   moveRandomly(p) {
+    if (p.random(100) < 5) {
+      return;
+    }
     let directions = [
       { x: 1, y: 0 }, // Right
       { x: -1, y: 0 }, // Left
@@ -126,6 +129,9 @@ const sketch = (p) => {
 
     if (snake.eat(food)) {
       score++;
+      food = randomFood();
+    }
+    if (enemySnake.eat(food)) {
       food = randomFood();
     }
 
