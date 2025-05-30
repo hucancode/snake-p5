@@ -6,7 +6,7 @@ const SCALE = 20; // Size of each grid cell
 
 class Snake {
   constructor() {
-    this.body = [{ x: 10, y: 10 }];
+    this.body = [{ x: 10, y: 10 }, {x: 10, y: 9}, {x: 10, y: 8},{x: 10, y: 7}];
     this.xdir = 1;
     this.ydir = 0;
     this.grow = false;
